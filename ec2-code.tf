@@ -9,17 +9,19 @@ data "aws_ami" "ubuntu" {
 
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-trusty-14.04-amd64-server-*"]
+    values = ["BastionHost"]
   }
-  
-  owners = ["099720109477"] # Canonical
+
+  owners = ["792304536015"] # Canonical
 }
 
 resource "aws_instance" "web" {
   ami           = "${data.aws_ami.ubuntu.id}"
-  instance_type = "t2.micro"
-
+  instance_type = "t3.medium"
+  subnet_id     = "subnet-04fc0065dd95757bf"
+  security_groups = ["sg-094cea61a776c0ac7"]
+  key_name        = "bastionhost-kp"
   tags = {
-    Name = "HelloWorld"
+    Name = "BastionHost"
   }
 }
