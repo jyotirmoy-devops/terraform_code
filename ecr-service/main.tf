@@ -17,7 +17,7 @@ resource "aws_ecr_repository_policy" "traqtion_demopolicy" {
         {
             "Sid": "new policy",
             "Effect": "Allow",
-            "Principal": "arn:aws:iam::792304536015:user/ecruser",
+            "Principal": "*",
             "Action": [
                 "ecr:GetDownloadUrlForLayer",
                 "ecr:BatchGetImage",
